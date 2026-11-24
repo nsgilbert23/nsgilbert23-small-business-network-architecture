@@ -1,0 +1,245 @@
+!
+version 15.0
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname Core-SW
+!
+enable secret 5 $1$mERr$LJeiAsN4bEdKBkGU3I.Xd0
+!
+!
+!
+ip ssh version 2
+ip domain-name smallbiz.local
+!
+username admin secret 5 $1$mERr$4K1NfT/kjS0GW5ghUZyjh0
+!
+!
+ip dhcp snooping vlan 10,20
+no ip dhcp snooping information option
+ip dhcp snooping
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+interface FastEthernet0/1
+ description Unused - Administratively Disabled
+ switchport access vlan 999
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/2
+ description Unused - Administratively Disabled
+ switchport access vlan 999
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/3
+ description Unused - Administratively Disabled
+ switchport access vlan 999
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/4
+ description Unused - Administratively Disabled
+ switchport access vlan 999
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/5
+ description VLAN 10 Staff Port
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 000C.CF9E.738E
+ spanning-tree portfast
+!
+interface FastEthernet0/6
+ description VLAN 10 Staff Port
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 0001.63C5.2C06
+ spanning-tree portfast
+!
+interface FastEthernet0/7
+ description VLAN 10 Staff Port
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+!
+interface FastEthernet0/8
+ description VLAN 10 Staff Port
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+!
+interface FastEthernet0/9
+ description VLAN 10 Staff Port
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+!
+interface FastEthernet0/10
+ description VLAN 10 Staff Port
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+!
+interface FastEthernet0/11
+ description VLAN 20 AccessPoint0
+ switchport access vlan 20
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/12
+ description Unused - Administratively Disabled
+ switchport access vlan 999
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/13
+ description Unused - Administratively Disabled
+ switchport access vlan 999
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/14
+ description Unused - Administratively Disabled
+ switchport access vlan 999
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/15
+ description Unused - Administratively Disabled
+ switchport access vlan 999
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/16
+ description Unused - Administratively Disabled
+ switchport access vlan 999
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/17
+ description Unused - Administratively Disabled
+ switchport access vlan 999
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/18
+ description Unused - Administratively Disabled
+ switchport access vlan 999
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/19
+ description Unused - Administratively Disabled
+ switchport access vlan 999
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/20
+ description VLAN 30 Server
+ switchport access vlan 30
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 0030.A3E4.36CE
+ spanning-tree portfast
+!
+interface FastEthernet0/21
+ description VLAN 30 Server
+ switchport access vlan 30
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 0050.0FD8.30E7
+ spanning-tree portfast
+!
+interface FastEthernet0/22
+ description Unused - Administratively Disabled
+ switchport access vlan 999
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/23
+ description Unused - Administratively Disabled
+ switchport access vlan 999
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/24
+ description Unused - Administratively Disabled
+ switchport access vlan 999
+ switchport mode access
+ shutdown
+!
+interface GigabitEthernet0/1
+ description TRUNK to R1
+ switchport trunk allowed vlan 10,20,30,99
+ ip dhcp snooping trust
+ switchport mode trunk
+!
+interface GigabitEthernet0/2
+ description Unused - Administratively Disabled
+ switchport access vlan 999
+ switchport mode access
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan99
+ ip address 192.168.99.2 255.255.255.0
+!
+ip default-gateway 192.168.99.1
+!
+!
+!
+!
+line con 0
+!
+line vty 0 4
+ exec-timeout 5 0
+ login local
+ transport input ssh
+line vty 5 15
+ exec-timeout 5 0
+ login local
+ transport input ssh
+!
+!
+!
+!
+end
+
